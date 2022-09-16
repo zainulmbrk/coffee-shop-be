@@ -35,6 +35,7 @@ module.exports = {
                         token,
                         user_id: results[0].user_id,
                         role: results[0].role,
+                        phone_number: results[0].phone_number,
                       },
                     })
                   } else {
