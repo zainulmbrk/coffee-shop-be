@@ -28,7 +28,6 @@ module.exports = {
                       {
                         user_id: results[0].user_id,
                         role: results[0].role,
-                        phone_number: results[0].phone_number,
                       },
                       process.env.JWT_SECRET_KEY,
                     )
@@ -39,7 +38,6 @@ module.exports = {
                         token,
                         user_id: results[0].user_id,
                         role: results[0].role,
-                        phone_number: results[0].phone_number,
                       },
                     })
                   } else {
