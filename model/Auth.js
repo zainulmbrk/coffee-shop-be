@@ -8,7 +8,7 @@ module.exports = {
     const { email, password } = req.body
     return new Promise((resolve, reject) => {
       db.query(
-        `SELECT user_id, password, role FROM users WHERE email='${email.toLowerCase()}'`,
+        `SELECT user_id, password, phone_number, role FROM users WHERE email='${email.toLowerCase()}'`,
         (err, results) => {
           if (err) {
             reject({ message: 'login error' })
@@ -28,6 +28,7 @@ module.exports = {
                       {
                         user_id: results[0].user_id,
                         role: results[0].role,
+                        phone_number: results[0].phone_number,
                       },
                       process.env.JWT_SECRET_KEY,
                     )
@@ -38,6 +39,7 @@ module.exports = {
                         token,
                         user_id: results[0].user_id,
                         role: results[0].role,
+                        phone_number: results[0].phone_number,
                       },
                     })
                   } else {
