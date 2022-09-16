@@ -25,7 +25,11 @@ module.exports = {
                   }
                   if (successHashing) {
                     const token = jwt.sign(
-                      { user_id: results[0].user_id, role: results[0].role },
+                      {
+                        user_id: results[0].user_id,
+                        role: results[0].role,
+                        phone_number: results[0].phone_number,
+                      },
                       process.env.JWT_SECRET_KEY,
                     )
                     resolve({
