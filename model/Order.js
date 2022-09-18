@@ -1,9 +1,9 @@
 const db = require('../helper/db_connection')
 
 module.exports = {
-  getAllBook: (req, res) => {
+  getAllPayment: (req, res) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT * FROM book`, (err, results) => {
+      db.query(`SELECT * FROM payment`, (err, results) => {
         if (err) {
           res.status(500)
           reject({ status: 'failed', message: 'error' })
@@ -13,7 +13,7 @@ module.exports = {
         } else {
           resolve({
             status: true,
-            message: 'get order success',
+            message: 'get payment success',
             data: results,
           })
         }
@@ -21,10 +21,10 @@ module.exports = {
     })
   },
 
-  getBookById: (req, res) => {
+  getPaymentById: (req, res) => {
     return new Promise((resolve, reject) => {
       const { order_id } = req.params
-      const sql = `SELECT * FROM book WHERE order_id=${order_id}`
+      const sql = `SELECT * FROM payment WHERE order_id=${order_id}`
       db.query(sql, (err, results) => {
         if (err) {
           res.status(500)
@@ -32,25 +32,26 @@ module.exports = {
         }
         resolve({
           status: true,
-          message: 'get order success',
+          message: 'get payment success',
           data: results,
         })
       })
     })
   },
 
-  addBook: (req, res) => {
+  addPayment: (req, res) => {
     return new Promise((resolve, reject) => {
-      const { product_id, total_price, address } = req.body
-      const sql = `INSERT INTO book (product_id, total_price, address) VALUES ('${product_id}', '${total_price}', '${address}')`
+      const { user_id, product_id, product_name, total_price } = req.body
+      const sql = `INSERT INTO payment(user_id, product_id, product_name, total_price) VALUES ('${user_id}','${product_id}', '${product_name}', '${total_price}')`
       db.query(sql, (err, results) => {
         if (err) {
           res.status(500)
           reject({ message: 'error' })
+          console.log(err)
         }
         resolve({
           status: true,
-          message: 'add success',
+          message: 'payment success',
           data: results,
         })
       })

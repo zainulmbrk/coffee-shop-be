@@ -16,8 +16,8 @@ const router = express.Router()
 router.get('/', getAllProducts)
 router.get('/:id', getProductByID)
 router.get('/', getProductByCategory)
-router.post('/', verifyAuth, uploads, addNewProducts)
-router.patch('/:product_id', verifyAuth, uploads, updateProduct)
-router.delete('/:product_id', verifyAuth, deleteProduct)
+router.post('/', verifyAuth.verifyAuthAdmin, uploads, addNewProducts)
+router.patch('/:product_id', verifyAuth.verifyAuthAdmin, uploads, updateProduct)
+router.delete('/:product_id', verifyAuth.verifyAuthAdmin, deleteProduct)
 
 module.exports = router

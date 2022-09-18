@@ -10,6 +10,6 @@ const OrderRoute = require('./OrderRoute')
 app.use('/product', ProductRoute)
 app.use('/category', CategoryRoute)
 app.use('/auth', AuthRoute)
-app.use('/order', OrderRoute)
+app.use('/payment', OrderRoute)
 
 module.exports = app
