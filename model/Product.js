@@ -13,9 +13,8 @@ module.exports = {
       } = req.query
       const offset = (page - 1) * limit
       const sql = `SELECT p.product_id, p.product_name, p.category_id, c.category_name, p.price, p.product_description, p.cover, p.created_at FROM product p LEFT JOIN category c ON p.category_id = c.category_id
-      ${
-        product_name ? `WHERE product_name LIKE '%${product_name}%'` : ''
-      } ORDER BY ${order} ${sortby} LIMIT ${limit} OFFSET ${offset}`
+      ${product_name ? `WHERE product_name LIKE '%${product_name}%'` : ''
+        } ORDER BY ${order} ${sortby} LIMIT ${limit} OFFSET ${offset}`
       db.query(sql, (err, results) => {
         if (err) {
           console.log(err)
@@ -153,7 +152,7 @@ module.exports = {
           const tempImg = results[0].cover
 
           if (req.body.cover) {
-            fs.unlink(`uploads/${tempImg}`, function (err) {
+            fs.unlink(`uploads/product/${tempImg}`, function (err) {
               if (err) {
                 console.log(err)
                 reject({
@@ -174,6 +173,7 @@ module.exports = {
                 message: 'update product success',
                 status: 200,
                 data: results,
+                changed: { ...req.body }
               })
             },
           )
