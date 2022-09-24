@@ -27,4 +27,13 @@ module.exports = {
       return res.status(500).send(error)
     }
   },
+
+  removePayment: async (req, res) => {
+    try {
+      const results = await Order.removePayment(req, res)
+      return res.status(200).send(results)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
+  },
 }

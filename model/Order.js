@@ -57,4 +57,24 @@ module.exports = {
       })
     })
   },
+
+  removePayment: (req, res) => {
+    return new Promise((resolve, reject) => {
+      const { payment_id } = req.params
+      db.query(
+        `DELETE FROM payment WHERE payment_id=${payment_id}`,
+        (err, results) => {
+          if (err) {
+            reject({ success: false })
+          }
+
+          resolve({
+            success: true,
+            message: 'Delete Payment Success',
+            data: results,
+          })
+        },
+      )
+    })
+  },
 }
