@@ -11,7 +11,7 @@ const uploads = require('../helper/multer')
 const router = express.Router()
 
 router.get('/', getAllPayment)
-router.get('/:payment_id', getPaymentById)
+router.get('/:user_id', verifyAuth.verifyAuthUser, getPaymentById)
 router.post('/', verifyAuth.verifyAuthUser, addPayment)
 
 module.exports = router
