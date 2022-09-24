@@ -131,7 +131,7 @@ module.exports = {
       const { product_id } = req.params
 
       db.query(
-        `SELECT * FROM product WHERE product_id='${req.params.product_id}'`,
+        `SELECT * FROM product WHERE product_id='${product_id}'`,
         (err, results) => {
           if (err) {
             res.send({ message: 'ada error' })
@@ -150,18 +150,18 @@ module.exports = {
           } = previousData
 
           const tempImg = results[0].cover
-
-          if (req.body.cover) {
-            fs.unlink(`uploads/product/${tempImg}`, function (err) {
-              if (err) {
-                console.log(err)
-                reject({
-                  message: 'something error',
-                })
-              }
-            })
+          if (req.file === '') {
+            prevData = {
+              ...prevData,
+              cover: results[0].cover
+            }
           }
 
+          if (req.file) {
+            fs.unlink(`./uploads/${tempImg}`, (err) => {
+              console.log(err)
+            })
+          }
           db.query(
             `UPDATE product SET product_name='${product_name}', cover='${cover}', category_id='${category_id}', price='${price}', product_description='${product_description}' WHERE product_id=${product_id}`,
             (err, results) => {

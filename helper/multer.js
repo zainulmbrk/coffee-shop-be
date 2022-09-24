@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
     cb(null, `${uniqueSuffix}-${file.originalname}`)
   },
-}) //INI GA KEPANGGIL MAKANYA GA JALAN SI UPLOADNYA NUL
+})
 
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname)
