@@ -23,8 +23,8 @@ module.exports = {
 
   getPaymentById: (req, res) => {
     return new Promise((resolve, reject) => {
-      const { order_id } = req.params
-      const sql = `SELECT * FROM payment WHERE order_id=${order_id}`
+      const { user_id } = req.params
+      const sql = `SELECT * FROM payment WHERE user_id=${user_id}`
       db.query(sql, (err, results) => {
         if (err) {
           res.status(500)

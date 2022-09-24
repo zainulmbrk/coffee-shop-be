@@ -62,6 +62,7 @@ module.exports = {
       bcrypt.hash(password, 10, function (err, hashPassword) {
         if (err) {
           reject({ message: 'something error' })
+          console.log(err)
         } else {
           db.query(
             `INSERT INTO users(email, password, phone_number) VALUES('${email}', '${hashPassword}', '${phone_number}')`,
