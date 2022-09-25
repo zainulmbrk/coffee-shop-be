@@ -14,6 +14,6 @@ const router = express.Router()
 router.get('/', getAllPayment)
 router.get('/:user_id', verifyAuth.verifyAuthUser, getPaymentById)
 router.post('/', verifyAuth.verifyAuthUser, addPayment)
-router.delete('/:payment_id', verifyAuth.verifyAuthUser, removePayment)
+router.delete('/:user_id/:payment_id', verifyAuth.verifyAuthUser, removePayment)
 
 module.exports = router

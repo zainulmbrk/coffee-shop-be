@@ -60,9 +60,9 @@ module.exports = {
 
   removePayment: (req, res) => {
     return new Promise((resolve, reject) => {
-      const { payment_id } = req.params
+      const { payment_id, user_id } = req.params
       db.query(
-        `DELETE FROM payment WHERE payment_id=${payment_id}`,
+        `DELETE FROM payment WHERE user_id=${user_id} AND payment_id=${payment_id}`,
         (err, results) => {
           if (err) {
             reject({ success: false })
