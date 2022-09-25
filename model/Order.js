@@ -28,7 +28,8 @@ module.exports = {
       db.query(sql, (err, results) => {
         if (err) {
           res.status(500)
-          reject({ message: 'error' })
+          reject({ message: err })
+          // console.log(err, 'ini errororo')
         }
         resolve({
           status: true,
